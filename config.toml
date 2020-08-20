@@ -1,0 +1,46 @@
+baseURL = "https://filipnikolovski.com/"
+languageCode = "en-us"
+title = "Filip Nikolovski"
+theme = "smol"
+
+# Parameters
+[params]
+    subtitle = "A blog about programming, technology and open-source stuff."
+    dateFmt = "02.01.2006 15:04"
+
+# Header
+[menu]
+  [[menu.main]]
+        identifier = "posts"
+        name = "Posts"
+        url = "/posts/"
+        weight = 1
+
+  [[menu.main]]
+        identifier = "categories"
+        name = "Categories"
+        url = "/categories/"
+        weight = 2
+
+  [[menu.main]]
+        identifier = "tags"
+        name = "Tags"
+        url = "/tags/"
+        weight = 3
+
+  [[menu.main]]
+        identifier = "about"
+        name = "About"
+        url = "/about/"
+        weight = 4
+
+# Footer
+  [[menu.footer]]
+        name = "Github"
+        url = "https://github.com/FilipNikolovski"
+        weight = 1
+
+  [[menu.footer]]
+        name = "Twitter"
+        url = "https://twitter.com/fffiiicc"
+        weight = 2
