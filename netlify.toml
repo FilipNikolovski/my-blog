@@ -29,4 +29,14 @@ HUGO_VERSION = "0.74.3"
 [context.next.environment]
 HUGO_ENABLEGITINFO = "true"
 
+[[redirects]]
+  from = https://filipnikolovski.com
+  to = https://filipnikolovski.com/
+  status = 301
+  force = true 
 
+[[redirects]]
+  from = "/posts/*"
+  to = "/posts/:splat/"
+  status = 301
+  force = false
