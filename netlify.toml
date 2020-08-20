@@ -30,8 +30,8 @@ HUGO_VERSION = "0.74.3"
 HUGO_ENABLEGITINFO = "true"
 
 [[redirects]]
-  from = https://filipnikolovski.com
-  to = https://filipnikolovski.com/
+  from = "https://filipnikolovski.com"
+  to = "https://filipnikolovski.com/""
   status = 301
   force = true 
 
