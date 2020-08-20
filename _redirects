@@ -1,2 +1,2 @@
-https://filipnikolovski.com https://filipnikolovski.com/
-/posts/* /posts/:splat/
+https://filipnikolovski.com https://filipnikolovski.com/ 301!
+/posts/* /posts/:splat/ 301
