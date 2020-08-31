@@ -77,8 +77,32 @@ The problem gets more convoluted in a distributed systems scenario, where separa
 difficult to follow and make sense of, when it comes to understanding the bigger picture. Finding the service that is the culprit will be like playing detective.
 
 To avoid having to become Sherlock as you intuitively search through the big pile of messages, you could simply connect them by having an additional field in 
-the structure of the log - a correlation id. This id can be generated on each request, somewhere on top of the call chain and propagated down to be used as part of each 
+the structure of the log - a **correlation id**. This id can be generated on each request, somewhere on top of the call chain and propagated down to be used as part of each 
 logged message.
 
-We can illustrate this concept in a Go app by creating and using a **HTTP middleware**. The basic principle of a middleware is that it's a way of organizing a shared
+We can illustrate this concept in a Go app by creating and using a **HTTP middleware**, the **context object**, and our trusty old logger. The basic principle of a middleware is that it's a way of organizing a shared
 functionality that we want to run on each HTTP request. This code usually sits between the router and the application controllers.
+
+**Note:** I won't cover the whole story on how to create and use middlewares since there are [great posts](https://www.alexedwards.net/blog/making-and-using-middleware) 
+about it that go into [detail](https://drstearns.github.io/tutorials/gomiddleware/), as well as some great libraries (such as [Negroni](https://github.com/urfave/negroni)),
+check them out for more info.
+
+Anyway, the gist of it is that a middleware is essentially a function that implements the [http.Handler](https://pkg.go.dev/net/http?tab=doc#Handler) interface 
+and it takes a handler function as a parameter which is the `next` handler that should be invoked, after the middleware code is done.
+
+```go
+func someMiddleware(next http.Handler) http.Handler {
+  return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+    // Middleware logic.. 
+    next.ServeHTTP(w, r)
+  })
+}
+```
+
+This allows us to chain multiple handlers together, so we'll end up having a handler that generates IDs and passes them down that wraps each application handler.
+
+The flow of control will look something like this:
+
+```
+Router --> Generate correlation ID Middleware --> App handler
+```
