@@ -99,10 +99,67 @@ func someMiddleware(next http.Handler) http.Handler {
 }
 ```
 
-This allows us to chain multiple handlers together, so we'll end up having a handler that generates IDs and passes them down that wraps each application handler.
+This allows us to chain multiple handlers together, so in our scenario we'll end up having a handler that generates IDs and passes them down that wraps each application handler.
 
 The flow of control will look something like this:
 
 ```
 Router --> Generate correlation ID Middleware --> App handler
+```
+
+## An example
+
+We can illustrate this in code with a simple example, where we will:
+
+  - Fetch the correlation id from a header if it's present (something like **X-Correlation-Id**)
+  - In case the header is not present, we'll generate a random id and add it to the response header. This will
+    make our debugging easier since we'll receive the id in our response.
+  - Pass it down to our logger instance
+  - Call the next handler
+
+```go
+package main
+
+import (
+  "os"
+  "net/http"
+  
+  
+  "github.com/rs/zerolog"
+  "github.com/rs/zerolog/hlog"
+)
+
+func correlationIDMiddleware(next http.Handler) http.Handler {
+  return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+    
+    next.ServeHTTP(w, r)
+  })
+}
+
+func testHandler(w http.ResponseWriter, r *http.Request) {
+  w.Write([]byte("OK"))
+}
+
+func main() {
+  log := zerolog.New(os.Stdout).With().
+    Timestamp().
+    Logger()
+    
+  mux := http.NewServeMux()
+
+  // NewHandler returns a middleware with the log object set in the request context
+  initLogMiddleware := hlog.NewHandler(log)
+  
+  mux.Handle("/", 
+    initLogMiddleware(
+      correlationIDMiddleware(
+        http.HandlerFunc(testHandler),
+      ),
+    ),
+  )
+
+  log.Println("Listening on :8080...")
+  err := http.ListenAndServe(":8080", mux)
+  log.Fatal(err)
+} 
 ```
