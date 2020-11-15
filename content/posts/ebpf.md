@@ -6,7 +6,7 @@ draft: true
 
 I was doing some research at work for tracing and observability for microservices, when I came across [Pixielabs](https://pixielabs.ai/). This tool advertises that you can instantly troubleshoot applications without any instrumentation or special code inside the apps, which sounded ✨magical✨ to me. So naturally I wanted to know a little more about what enables this technology to work, and after scrolling through the site, under the "No Instrumentation" section was this acronym **eBPF**.
 
-After some further digging on the internet about this eBPF technology, reading the [design papers](https://www.tcpdump.org/papers/bpf-usenix93.pdf) and watching several videos, it was safe to say it really caught my attention, so I wanted to write some notes on this and I hope this post will spark some further interest in you as well. 
+After some further digging on the internet, reading the [design papers](https://www.tcpdump.org/papers/bpf-usenix93.pdf) and watching several videos, it was safe to say this technology really caught my attention, so I wanted to write some notes on it and I hope this post will spark some further interest in you as well. 
 
 ## So what is eBPF exactly?
 
@@ -78,7 +78,7 @@ while 1:
     printb(b"%-18.9f %-16s %-6d %s" % (ts, task, pid, msg))
 ```
 
-The eBPF program is defined as a pseudo-C code and it's placed in the variable `prog` as a string. The bcc framework does all the heavy lifting of generating the bytecode, loading the programs and all that stuff, which makes writing these programs a bit easier.
+The eBPF program is written in a pseudo-C code and it's placed in the variable `prog` as a string. The bcc framework does all the heavy lifting of generating the bytecode, loading the programs and all that stuff, which makes writing these programs a bit easier.
 
 In this example, the hello function invokes a bpf helper function called `bpf_trace_printk` which just outputs the "Hello, World!" trace. Then we load the program and we attach a kernel probe for the [`clone`](https://man7.org/linux/man-pages/man2/clone.2.html) event, basically saying that we want to call the `hello` program each time `clone` is called.
 
