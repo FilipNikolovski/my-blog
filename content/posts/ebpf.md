@@ -1,6 +1,6 @@
 ---
 title: "TIL: eBPF is awesome"
-date: 2020-11-21T19:05:30+01:00
+date: 2020-11-20T19:05:30+01:00
 draft: false
 categories:
   - Linux
