@@ -17,7 +17,7 @@ After some further digging on the internet, reading the [design papers](https://
 
 ## So what is eBPF exactly?
 
-The TL;DR version is that this technology enables sandboxed user space applications to run in the Linux kernel itself. In a way it makes the kernel _programmable_ which unlocks tremendous possibilities. 
+The TL;DR version is that this technology enables sandboxed user applications to run in the Linux kernel itself. In a way it makes the kernel _programmable_ which unlocks tremendous possibilities. 
 
 You can pick **any function** from the kernel and execute the program every time that function runs. Running a program that "attaches" to network sockets, tracepoints and perf events can be extremely useful. Developers can debug the kernel without having to re-compile it. There are plenty of use cases such as:
 
