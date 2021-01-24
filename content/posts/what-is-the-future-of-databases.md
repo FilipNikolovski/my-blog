@@ -19,6 +19,8 @@ These technologies are great at what they do, we just need something that nicely
 
 Instead, if we can figure out a way of making these diverse components work nicely together, we will have a much more reliable solution. Kinda like the pipe in Unix, allowing the user to compose different workflows together out of simpler programs, by sending the output of one command to another, for further processing. 
 
-Now I know there are tools today that handle some of these cases that I mentioned, and they are getting better each day, but they're far from simple to operate and maintain, and more importantly, they're not of declarative nature. What I would love to have is some abstraction akin to SQL, some declarative language that will hide away the complexities of storing and synchronizing the data across the different data systems, making it easier to combine the disparate technologies, while also providing escape hatches in case the need arises to access the underlying storage directly. 
+Now I know there are tools today that handle some of these cases that I mentioned, and they are getting better each day, but they're far from simple to operate and maintain, and more importantly, they're not of declarative nature. 
+
+Instead of relying on tools, is it possible to have some abstraction akin to SQL, some declarative language that will hide away the complexities of storing and synchronizing the data across the different data systems, making it easier to combine the disparate technologies, while also providing escape hatches in case the need arises to access the underlying storage directly?
 
 Taking inspiration from the UNIX philosophy which emphasizes building complex systems out of simpler, extensible, and modular components, can we apply the same principles here, to our future data systems? 
