@@ -1,0 +1,16 @@
+---
+title: "Some thoughts on Microservices"
+date: 2021-11-29T14:49:48+01:00
+draft: false
+---
+
+I know that the topic of microservices has been discussed over and over again, just wanted to add my two cents to the pile, based on my experience with this approach of designing web apps:
+- A lot of people believe that the [microservices](https://microservices.io/) architecture solve software problems that are of scaling and performance nature. But the most important problem that they solve, is an organizational one.
+- [Conway's law](https://en.wikipedia.org/wiki/Conway%27s_law) is always in play. When you think about how the software that you build should look like, you need to think how your organizational structure should look like. They always go hand in hand.
+- If you are a single team, then a design involving multiple moving pieces does not make a lot of sense from that perspective. Who should take ownership over each component? How can the services be truly independent from one another? It is inevitable to entangle them just because it's more convenient that way and end up with something that resembles a microservice architecture, but in reality it is more of a "distributed monolith". Starting with a microservices architecture is the wrong play that a lot of people seem to make. The structure of the software always ends up looking like the structure of the organization. It is inevitable.
+- Never start with a microservice architecture if you have a single team.
+- As the organization scales though, and more people are added to the team, then it is the right time to raise the question for the current design of the architecture.
+- As the team grows, it will become more and more difficult to manage it. Breaking this big team apart into multiple, smaller, independent teams is a natural step going forward. Then the question that we should ask is: how can those teams take full ownership over the parts of the product that they are responsible for? How can we make the teams take control over their own "destinies"?
+- For a team to be truly independent, it needs full decision making power in every layer of the stack: from the UI/UX, the APIs that the backend is going to expose, all the way down to the infrastructure that willl power the whole thing. Doing this as a single monolithic application is certainly feasible, but then the teams will need to be synchronized in their development process, especially in the deployment phase. They will step on each other's toes constantly. Thus, a need will arise to create an architecture that will mirror the organizational one. Microservices solve this exact problem - scaling the teams.
+- The services need to be composable, and play well with each other, just as you would create composable modules in a monolith. Breaking it apart and simply sticking a web server in front of it won't save you.
+- For features that span multiple domains, a clear ownership of the data, as well as clear and consistent APIs are a must, otherwise you risk complicating the relationship between the services that are involved. Defining these boundaries is the responsibility of the teams that will develop this feature. The communication between the services should reflect the communication of the teams.
