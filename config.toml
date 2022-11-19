@@ -57,3 +57,8 @@ copyright = "This work is licensed under a Creative Commons Attribution-ShareAli
         name = "RSS"
         url = "/index.xml"
         weight = 3
+
+  [[menu.footer]]
+        name = "Powered by Netlify"
+        url = "https://www.netlify.com/"
+        weight = 4
