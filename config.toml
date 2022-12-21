@@ -54,11 +54,16 @@ copyright = "This work is licensed under a Creative Commons Attribution-ShareAli
         weight = 2
 
   [[menu.footer]]
+        name = "Mastodon"
+        url = "https://hachyderm.io/@fffiiiccc"
+        weight = 3
+
+  [[menu.footer]]
         name = "RSS"
         url = "/index.xml"
-        weight = 3
+        weight = 4
 
   [[menu.footer]]
         name = "Powered by Netlify"
         url = "https://www.netlify.com/"
-        weight = 4
+        weight = 5
