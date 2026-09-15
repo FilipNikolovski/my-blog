@@ -1,13 +1,14 @@
 baseURL = "https://filipnikolovski.com/"
-languageCode = "en-us"
 title = "Filip Nikolovski"
 theme = "smol"
-enableRobotsTXT=true
+enableRobotsTXT = true
+defaultContentLanguage = "en"
 
 copyright = "This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License."
 
-[author]
-    name = "Filip Nikolovski"
+[languages.en]
+  locale = "en-US"
+  weight = 1
 
 # Parameters
 [params]
@@ -15,6 +16,9 @@ copyright = "This work is licensed under a Creative Commons Attribution-ShareAli
     description = "A blog about programming, technology and open-source stuff."
     dateFmt = "02.01.2006 15:04"
     author = "Filip Nikolovski"
+
+[markup.goldmark.renderer]
+    unsafe = true
 
 # Header
 [menu]
@@ -54,16 +58,11 @@ copyright = "This work is licensed under a Creative Commons Attribution-ShareAli
         weight = 2
 
   [[menu.footer]]
-        name = "Mastodon"
-        url = "https://hachyderm.io/@fffiiiccc"
-        weight = 3
-
-  [[menu.footer]]
         name = "RSS"
         url = "/index.xml"
-        weight = 4
+        weight = 3
 
   [[menu.footer]]
         name = "Powered by Netlify"
         url = "https://www.netlify.com/"
-        weight = 5
+        weight = 4
